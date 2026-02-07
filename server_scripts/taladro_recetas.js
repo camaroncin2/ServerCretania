@@ -2,20 +2,31 @@ ServerEvents.recipes(event => {
 
   event.remove({ output: 'create:mechanical_drill' })
 
-  // Lingotes revestidos
-  event.recipes.create.deploying(
-    'kubejs:steel_coated_ingot_1',
-    ['minecraft:iron_ingot', 'create_ironworks:steel_sheet']
-  )
-
-  event.recipes.create.deploying(
-    'kubejs:steel_coated_ingot_2',
-    ['kubejs:steel_coated_ingot_1', 'create_ironworks:steel_sheet']
-  )
-  event.recipes.create.deploying(
-    'kubejs:steel_coated_ingot_3',
-    ['kubejs:steel_coated_ingot_2', 'create_ironworks:steel_sheet']
-  )
+  event.remove({ id: 'kubejs:steel_coated_ingot_sequence' })
+  event.custom({
+    type: 'create:sequenced_assembly',
+    ingredient: { item: 'minecraft:iron_ingot' },
+    loops: 1,
+    results: [{ item: 'kubejs:steel_coated_ingot', count: 1 }],
+    sequence: [
+      {
+        type: 'create:deploying',
+        ingredients: [{ item: 'kubejs:incomplete_coated_ingot' }, { item: 'create_ironworks:steel_sheet' }],
+        results: [{ item: 'kubejs:incomplete_coated_ingot' }]
+      },
+      {
+        type: 'create:deploying',
+        ingredients: [{ item: 'kubejs:incomplete_coated_ingot' }, { item: 'create_ironworks:steel_sheet' }],
+        results: [{ item: 'kubejs:incomplete_coated_ingot' }]
+      },
+      {
+        type: 'create:deploying',
+        ingredients: [{ item: 'kubejs:incomplete_coated_ingot' }, { item: 'create_ironworks:steel_sheet' }],
+        results: [{ item: 'kubejs:incomplete_coated_ingot' }]
+      }
+    ],
+    transitionalItem: { item: 'kubejs:incomplete_coated_ingot' }
+  }).id('kubejs:steel_coated_ingot_sequence')
 
   // ===============================
   // SECUENCIA DE ENSAMBLAJE
@@ -23,62 +34,31 @@ ServerEvents.recipes(event => {
 
 
 
-  event.remove({ id: 'kubejs:drill_head_incomplete_sequence' })
-
+  event.remove({ id: 'kubejs:drill_head_sequence' })
   event.custom({
     type: 'create:sequenced_assembly',
-
-    ingredient: {
-      item: 'minecraft:iron_ingot'
-    },
-
+    ingredient: { item: 'kubejs:steel_coated_ingot' },
     loops: 1,
-
-    results: [
-      {
-        item: 'kubejs:incomplete_drill_head',
-        count: 1
-      }
-    ],
-
+    results: [{ item: 'kubejs:fragile_drill_head', count: 1 }],
     sequence: [
       {
         type: 'create:deploying',
-        ingredients: [
-          { item: 'kubejs:incomplete_drill_head' },
-          { item: 'kubejs:steel_coated_ingot_1' }
-        ],
-        results: [
-          { item: 'kubejs:incomplete_drill_head' }
-        ]
+        ingredients: [{ item: 'kubejs:steel_coated_ingot' }, { item: 'create:andesite_alloy' }],
+        results: [{ item: 'kubejs:steel_coated_ingot' }]
       },
       {
         type: 'create:deploying',
-        ingredients: [
-          { item: 'kubejs:incomplete_drill_head' },
-          { item: 'kubejs:steel_coated_ingot_2' }
-        ],
-        results: [
-          { item: 'kubejs:incomplete_drill_head' }
-        ]
+        ingredients: [{ item: 'kubejs:steel_coated_ingot' }, { item: 'create:andesite_alloy' }],
+        results: [{ item: 'kubejs:steel_coated_ingot' }]
       },
       {
         type: 'create:deploying',
-        ingredients: [
-          { item: 'kubejs:incomplete_drill_head' },
-          { item: 'kubejs:steel_coated_ingot_3' }
-        ],
-        results: [
-          { item: 'kubejs:incomplete_drill_head' }
-        ]
+        ingredients: [{ item: 'kubejs:steel_coated_ingot' }, { item: 'create:andesite_alloy' }],
+        results: [{ item: 'kubejs:steel_coated_ingot' }]
       }
     ],
-
-    transitionalItem: {
-      item: 'kubejs:incomplete_drill_head'
-    }
-  })
-  .id('kubejs:drill_head_incomplete_sequence')
+    transitionalItem: { item: 'kubejs:steel_coated_ingot' }
+  }).id('kubejs:drill_head_sequence')
 
 
 
@@ -90,7 +70,7 @@ ServerEvents.recipes(event => {
   // ===============================
 event.blasting(
   'kubejs:heated_drill_head',
-  'kubejs:incomplete_drill_head'
+  'kubejs:fragile_drill_head'
 )
 
 event.recipes.create.splashing(
