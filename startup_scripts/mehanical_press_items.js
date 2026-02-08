@@ -5,8 +5,8 @@ StartupEvents.registry('item', event => {
 })
 
 StartupEvents.registry('block', event => {
-  event.create('incomplete_press_casing_mk1').displayName('Carcasa de Prensa Incompleta').material('metal').sound('metal').hardness(3.0).requiresTool(true)
-  event.create('incomplete_press_casing_mk2').displayName('Carcasa de Prensa Incompleta').material('metal').sound('metal').hardness(3.0).requiresTool(true)
-  event.create('incomplete_press_casing_mk3').displayName('Carcasa de Prensa Incompleta').material('metal').sound('metal').hardness(3.0).requiresTool(true)
+  event.create('incomplete_press_casing_mk1').displayName('Carcasa de Prensa Incompleta').hardness(3.0).requiresTool(true)
+  event.create('incomplete_press_casing_mk2').displayName('Carcasa de Prensa Incompleta').hardness(3.0).requiresTool(true)
+  event.create('incomplete_press_casing_mk3').displayName('Carcasa de Prensa Incompleta').hardness(3.0).requiresTool(true)
   event.create('piston_extension_half').displayName('Mitad de Extensor')
 })
