@@ -48,7 +48,7 @@ ServerEvents.recipes(event => {
   event.remove({ id: 'kubejs:press_casing_mk1' })
   event.recipes.create.deploying(
     'kubejs:incomplete_press_casing_mk1',
-    ['kubejs:coated_casing', '#c:stripped_logs']
+    ['#c:stripped_logs' , 'kubejs:coated_casing']
   ).id('kubejs:press_casing_mk1')
 
   event.remove({ id: 'kubejs:press_casing_mk2' })
