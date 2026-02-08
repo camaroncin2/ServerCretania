@@ -1,3 +1,8 @@
 {
-  "parent": "kubejs:block/coated_casing"
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "kubejs:item/coated_casing_top",
+    "bottom": "kubejs:item/coated_casing_bottom",
+    "side": "kubejs:item/coated_casing"
+  }
 }
