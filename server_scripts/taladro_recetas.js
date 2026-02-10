@@ -25,17 +25,20 @@ ServerEvents.recipes(event => {
       {
         type: 'create:deploying',
         ingredients: [{ item: 'kubejs:incomplete_coated_ingot' }, { item: 'kubejs:forge_hammer_mk1' }],
-        results: [{ item: 'kubejs:incomplete_coated_ingot' }]
+        results: [{ item: 'kubejs:incomplete_coated_ingot' }],
+        keepHeldItem: true
       },
       {
         type: 'create:deploying',
         ingredients: [{ item: 'kubejs:incomplete_coated_ingot' }, { item: 'kubejs:forge_hammer_mk1' }],
-        results: [{ item: 'kubejs:incomplete_coated_ingot' }]
+        results: [{ item: 'kubejs:incomplete_coated_ingot' }],
+        keepHeldItem: true
       },
       {
         type: 'create:deploying',
         ingredients: [{ item: 'kubejs:incomplete_coated_ingot' }, { item: 'kubejs:forge_hammer_mk1' }],
-        results: [{ item: 'kubejs:incomplete_coated_ingot' }]
+        results: [{ item: 'kubejs:incomplete_coated_ingot' }],
+        keepHeldItem: true
       }
     ],
     transitionalItem: { item: 'kubejs:incomplete_coated_ingot' }
